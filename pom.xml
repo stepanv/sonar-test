@@ -804,7 +804,7 @@
                 <failsafe.coverage.argline>${jacoco.agent.it.arg}</failsafe.coverage.argline>
 
                 <!-- Maven versions -->
-                <jacoco.version>0.7.5.201505241946</jacoco.version>
+                <jacoco.version>0.7.4.201502262128</jacoco.version>
                 <sonar-jacoco-listeners.version>3.2</sonar-jacoco-listeners.version>
                 <sonar.version>2.6</sonar.version>
             </properties>
