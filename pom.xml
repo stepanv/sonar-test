@@ -66,7 +66,7 @@
 
         EXECUTION:
         mvn clean install -P sonar 2>&1 | grep 'HELLO FROM' (4 different 'HELLO FROM' should be logged in console)
-        mvn sonar:sonar -P sonar
+        mvn sonar:sonar -P sonar -Djacoco.outputDir=$(pwd)/target
 
         ]]>
     </description>
