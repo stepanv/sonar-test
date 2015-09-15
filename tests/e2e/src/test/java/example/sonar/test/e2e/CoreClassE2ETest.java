@@ -50,6 +50,6 @@ import example.sonar.CoreClass;
 public class CoreClassE2ETest {
     @Test
     public void testHello() {
-        Assert.assertEquals("hello e2e", CoreClass.helloE2E());
+        Assert.assertEquals("hello e2e", new CoreClass().helloE2E());
     }
 }

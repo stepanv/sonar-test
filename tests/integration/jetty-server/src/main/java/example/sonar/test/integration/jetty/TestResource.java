@@ -53,7 +53,7 @@ public class TestResource {
     @GET
     @Path("hello/server")
     public String helloServer() {
-        return CoreClass.helloIntegrationServerJvm();
+        return new CoreClass().helloIntegrationServerJvm();
     }
 
 }

@@ -49,6 +49,6 @@ public class CoreClassTest {
 
     @Test
     public void testHello() {
-        Assert.assertEquals("hello unit test", CoreClass.helloUnitTest());
+        Assert.assertEquals("hello unit test", new CoreClass().helloUnitTest());
     }
 }

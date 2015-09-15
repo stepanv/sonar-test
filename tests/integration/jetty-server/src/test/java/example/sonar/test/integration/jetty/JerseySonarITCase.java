@@ -66,7 +66,7 @@ public class JerseySonarITCase extends JerseyTest {
 
     @Test
     public void testTestJvmHello() {
-        final String hello = CoreClass.helloIntegrationTestJvm();
+        final String hello = new CoreClass().helloIntegrationTestJvm();
 
         Assert.assertEquals("hello test jvm", hello);
     }

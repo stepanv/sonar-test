@@ -60,6 +60,7 @@
     <properties>
         <servlet3.version>3.0.1</servlet3.version>
         <jersey.config.test.container.port>9998</jersey.config.test.container.port>
+        <external.container.logFile>${project.build.directory}/jetty-out.log</external.container.logFile>
     </properties>
 
     <build>
@@ -82,18 +83,21 @@
                                 <maxIdleTime>60000</maxIdleTime>
                             </connector>
                         </connectors>
-                        <jvmArgs>${server.coverage.argline}</jvmArgs>
                     </configuration>
                     <executions>
                         <execution>
                             <id>start-jetty</id>
                             <phase>pre-integration-test</phase>
                             <goals>
-                                <goal>run</goal>
+                                <goal>run-forked</goal>
                             </goals>
                             <configuration>
+                                <contextPath>/</contextPath>
                                 <scanIntervalSeconds>0</scanIntervalSeconds>
-                                <daemon>true</daemon>
+                                <waitForChild>false</waitForChild>
+                                <jvmArgs>${server.coverage.argline} -Djetty.port=${jersey.config.test.container.port}
+                                    -Dorg.slf4j.simpleLogger.logFile=${external.container.logFile}
+                                </jvmArgs>
                             </configuration>
                         </execution>
                         <execution>
@@ -104,6 +108,13 @@
                             </goals>
                         </execution>
                     </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.slf4j</groupId>
+                            <artifactId>slf4j-simple</artifactId>
+                            <version>1.7.5</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>
