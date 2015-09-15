@@ -58,7 +58,7 @@ public class CoreClass {
      * A method that is executed from a unit test by maven surefire plugin within the same Maven module.
      */
     public static String helloUnitTest() {
-        System.out.println("Hello from Unit Test");
+        System.out.println("HELLO FROM Unit Test");
         return hello() + " unit test";
     }
 
@@ -66,7 +66,7 @@ public class CoreClass {
      * This method is executed from a unit test by maven surefire plugin from a dependant module.
      */
     public static String helloE2E() {
-        System.out.println("Hello from E2E Test");
+        System.out.println("HELLO FROM E2E Test");
         return hello() + " e2e";
     }
 
@@ -74,7 +74,7 @@ public class CoreClass {
      * A method that is executed in a JVM of maven failsafe plugin from a dependant maven module. The call is executed directly.
      */
     public static String helloIntegrationTestJvm() {
-        System.out.println("Hello from direct Integration Test");
+        System.out.println("HELLO FROM Integration Test");
         return hello() + " test jvm";
     }
 
@@ -83,7 +83,7 @@ public class CoreClass {
      * JUnit test that is executed by maven failsafe plugin.
      */
     public static String helloIntegrationServerJvm() {
-        System.out.println("Hello from server executed Integration Test");
+        System.out.println("HELLO FROM server executed Integration Test");
         return hello() + " server jvm";
     }
 }

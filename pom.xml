@@ -49,6 +49,28 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <description>
+        <![CDATA[
+
+        Sonar + JaCoCO Maven multi-module test project.
+
+        The purpose of this project is to verify that Sonar together with JaCoCo reports correct test coverage.
+
+        Following cases are considered:
+
+        [1] Direct JUnit surefire test
+        [2] Indirect JUnit surefire test (from a different maven sub-module)
+        [3] Indirect JUnit failsafe test (from a different maven sub-module)
+        [4] 2-level indirect failsafe test run by using Jetty servlet container (from a different maven sub-module)
+
+
+        EXECUTION:
+        mvn clean install -P sonar 2>&1 | grep 'HELLO FROM' (4 different 'HELLO FROM' should be logged in console)
+        mvn sonar:sonar -P sonar
+
+        ]]>
+    </description>
+
     <scm>
         <connection>scm:git:https://github.com/stepanv/sonar-test.git</connection>
         <developerConnection>scm:git:https://github.com/stepanv/sonar-test.git</developerConnection>
