@@ -44,22 +44,33 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.glassfish.jersey.sonar-test.test.integration</groupId>
-        <artifactId>project-sonar-test</artifactId>
-        <version>2.22-SNAPSHOT</version>
+        <groupId>example.sonar.test.integration</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>async-jersey-filter-sonar-test</artifactId>
+    <artifactId>jetty-server</artifactId>
     <packaging>war</packaging>
-    <name>jersey-tests-integration-jersey-async-filter-sonar-test</name>
 
-    <description>
-        This web project reproduces tickets:
-        JERSEY-2730
-        JERSEY-2812
-    </description>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>2.21</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
+
+        <dependency>
+            <groupId>example.sonar.core</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
@@ -69,25 +80,18 @@
             <artifactId>jersey-test-framework-provider-external</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>${servlet3.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.sonar-test.core</groupId>
-            <artifactId>jersey-server-sonar-test</artifactId>
-            <version>2.22-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>

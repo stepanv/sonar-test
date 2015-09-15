@@ -44,15 +44,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.glassfish.jersey.sonar-test</groupId>
-        <artifactId>project-sonar-test</artifactId>
-        <version>2.22-SNAPSHOT</version>
+        <groupId>example.sonar</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.glassfish.jersey.sonar-test.test</groupId>
-    <artifactId>project-sonar-test</artifactId>
+    <groupId>example.sonar.test</groupId>
+    <artifactId>project</artifactId>
     <packaging>pom</packaging>
-    <name>jersey-tests-sonar-test</name>
 
     <description>
         Test modules containing test scenario types that involve multiple implementation
@@ -64,35 +63,4 @@
         <module>integration</module>
     </modules>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.glassfish.jersey</groupId>
-                <artifactId>jersey-bom</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

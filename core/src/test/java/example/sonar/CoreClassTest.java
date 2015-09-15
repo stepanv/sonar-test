@@ -37,21 +37,18 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
+package example.sonar;
 
-import javax.ws.rs.ApplicationPath;
-
-import org.glassfish.jersey.server.ResourceConfig;
-
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Jersey application for JERSEY-2730.
- *
  * @author Stepan Vavra (stepan.vavra at oracle.com)
  */
-@ApplicationPath("/")
-public class TestApplication extends ResourceConfig {
+public class CoreClassTest {
 
-    public TestApplication() {
-        register(TestWaitResource.class);
+    @Test
+    public void testHello() {
+        Assert.assertEquals("hello unit test", CoreClass.helloUnitTest());
     }
 }

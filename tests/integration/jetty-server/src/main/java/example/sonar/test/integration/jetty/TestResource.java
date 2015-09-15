@@ -37,16 +37,23 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
+package example.sonar.test.integration.jetty;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
-import org.junit.Assert;
-import org.junit.Test;
+import example.sonar.CoreClass;
 
 /**
  * @author Stepan Vavra (stepan.vavra at oracle.com)
  */
-public class CoreClassTest {
-    @Test
-    public void testHello() {
-        Assert.assertEquals("hello unit test", CoreClass.helloUnitTest());
+@Path("/test")
+@Produces("text/plain")
+public class TestResource {
+    @GET
+    @Path("hello/server")
+    public String helloServer() {
+        return CoreClass.helloIntegrationServerJvm();
     }
+
 }

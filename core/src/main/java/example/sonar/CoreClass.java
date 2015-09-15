@@ -37,45 +37,53 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
-import javax.ws.rs.core.Application;
-
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.external.ExternalTestContainerFactory;
-import org.glassfish.jersey.test.spi.TestContainerException;
-import org.glassfish.jersey.test.spi.TestContainerFactory;
-
-import org.junit.Assert;
-import org.junit.Test;
+package example.sonar;
 
 /**
+ * The purpose of this class is to verify the reported test coverage shows correct results in various modes of test executions.
+ * For further details, see javadoc bellow.
+ *
  * @author Stepan Vavra (stepan.vavra at oracle.com)
  */
-public class JerseySonarITCase extends JerseyTest {
+public class CoreClass {
 
-    @Test
-    public void testServerJvmHello() {
-        final String hello = target("test/hello/server").request().get(String.class);
-
-        Assert.assertEquals("hello server jvm", hello);
+    /**
+     * This method is invoked indirectly from the tests.
+     */
+    public static String hello() {
+        return "hello";
     }
 
-    @Test
-    public void testTestJvmHello() {
-        final String hello = CoreClass.helloIntegrationTestJvm();
-
-        Assert.assertEquals("hello test jvm", hello);
+    /**
+     * A method that is executed from a unit test by maven surefire plugin within the same Maven module.
+     */
+    public static String helloUnitTest() {
+        System.out.println("Hello from Unit Test");
+        return hello() + " unit test";
     }
 
-    @Override
-    protected Application configure() {
-        return new ResourceConfig(TestApplication.class);
+    /**
+     * This method is executed from a unit test by maven surefire plugin from a dependant module.
+     */
+    public static String helloE2E() {
+        System.out.println("Hello from E2E Test");
+        return hello() + " e2e";
     }
 
-    @Override
-    protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
-        return new ExternalTestContainerFactory();
+    /**
+     * A method that is executed in a JVM of maven failsafe plugin from a dependant maven module. The call is executed directly.
+     */
+    public static String helloIntegrationTestJvm() {
+        System.out.println("Hello from direct Integration Test");
+        return hello() + " test jvm";
     }
 
+    /**
+     * This method is executed from a server (Jetty for instance) during the integration test phase. This server is called by a
+     * JUnit test that is executed by maven failsafe plugin.
+     */
+    public static String helloIntegrationServerJvm() {
+        System.out.println("Hello from server executed Integration Test");
+        return hello() + " server jvm";
+    }
 }

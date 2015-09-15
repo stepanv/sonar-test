@@ -37,21 +37,19 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
+package example.sonar.test.e2e;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import org.junit.Assert;
+import org.junit.Test;
+
+import example.sonar.CoreClass;
 
 /**
  * @author Stepan Vavra (stepan.vavra at oracle.com)
  */
-@Path("/test")
-@Produces("text/plain")
-public class TestWaitResource {
-    @GET
-    @Path("hello/server")
-    public String helloServer() {
-        return CoreClass.helloIntegrationServerJvm();
+public class CoreClassE2ETest {
+    @Test
+    public void testHello() {
+        Assert.assertEquals("hello e2e", CoreClass.helloE2E());
     }
-
 }

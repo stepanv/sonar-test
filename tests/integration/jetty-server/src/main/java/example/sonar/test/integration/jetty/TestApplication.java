@@ -37,30 +37,20 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
+package example.sonar.test.integration.jetty;
+
+import javax.ws.rs.ApplicationPath;
+
+import org.glassfish.jersey.server.ResourceConfig;
+
 
 /**
  * @author Stepan Vavra (stepan.vavra at oracle.com)
  */
-public class CoreClass {
-    public static String hello() {
-        return "hello";
-    }
+@ApplicationPath("/")
+public class TestApplication extends ResourceConfig {
 
-    public static String helloUnitTest() {
-        return hello() + " unit test";
-    }
-
-    public static String helloE2E() {
-        return hello() + " e2e";
-    }
-
-
-    public static String helloIntegrationTestJvm() {
-        return hello() + " test jvm";
-    }
-
-
-    public static String helloIntegrationServerJvm() {
-        return hello() + " server jvm";
+    public TestApplication() {
+        register(TestResource.class);
     }
 }

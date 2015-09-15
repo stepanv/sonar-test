@@ -37,16 +37,48 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
+package example.sonar.test.integration.jetty;
+
+import javax.ws.rs.core.Application;
+
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.external.ExternalTestContainerFactory;
+import org.glassfish.jersey.test.spi.TestContainerException;
+import org.glassfish.jersey.test.spi.TestContainerFactory;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import example.sonar.CoreClass;
+
 /**
  * @author Stepan Vavra (stepan.vavra at oracle.com)
  */
-public class CoreClassE2ETest {
+public class JerseySonarITCase extends JerseyTest {
+
     @Test
-    public void testHello() {
-        Assert.assertEquals("hello e2e", CoreClass.helloE2E());
+    public void testServerJvmHello() {
+        final String hello = target("test/hello/server").request().get(String.class);
+
+        Assert.assertEquals("hello server jvm", hello);
     }
+
+    @Test
+    public void testTestJvmHello() {
+        final String hello = CoreClass.helloIntegrationTestJvm();
+
+        Assert.assertEquals("hello test jvm", hello);
+    }
+
+    @Override
+    protected Application configure() {
+        return new ResourceConfig(TestApplication.class);
+    }
+
+    @Override
+    protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
+        return new ExternalTestContainerFactory();
+    }
+
 }
